@@ -13,7 +13,7 @@ node{
 	}
 	stage("Push Docker image to Container Registry"){
 			docker.withRegistry('https://eu.gcr.io', 'gcr:myregistry') {
- 	 		app.push("${env.BUILD_NUMBER}")
+ 	 		app.push
  	 		
 		}
 	}
