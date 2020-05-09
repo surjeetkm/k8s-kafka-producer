@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: k8s-kafka-prod
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: k8s-kafka-prod
+    spec:
+      containers:
+        - name: k8s-kafka-prod
+          image: 'eu.gcr.io/microservices-2020/k8s-kafka-prod:v1'
+          ports:
+            - containerPort: 8080
+          env:   # Setting Enviornmental Variables
+          - name: KAFKA_ADVERTISED_HOST_NAME   # Setting Database host address from configMap
+            valueFrom: 
+              configMapKeyRef:
+                name: my-conf  # name of configMap
+                key: name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-kafka-prod-service
+  labels:
+    name: k8s-kafka-prod-service
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: k8s-kafka-prod
+  type: LoadBalancer

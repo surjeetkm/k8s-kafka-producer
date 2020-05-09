@@ -23,7 +23,7 @@ public class K8sKafkaProducerApplication {
 		SpringApplication.run(K8sKafkaProducerApplication.class, args);
 	}
 
-	private static final String TOPIC="java_in_use_topic";
+	private static final String TOPIC="test";
 	@Autowired
     KafkaTemplate<String, Customer> kafkaTemplate;
 	@GetMapping("/get")
