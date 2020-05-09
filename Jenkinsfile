@@ -1,6 +1,6 @@
 node{
 	stage("Git clone"){
-	ap	git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/surjeetkm/k8s-kafka-producer.git'
+		git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/surjeetkm/k8s-kafka-producer.git'
 	}
 	stage("Maven clean build artifact"){
 		def mavenHome= tool name: "Maven", type: "maven"
@@ -14,7 +14,7 @@ node{
 	stage("Push Docker image to Container Registry"){
 			docker.withRegistry('https://eu.gcr.io', 'gcr:myregistry') {
  	 		app.push("${env.BUILD_NUMBER}")
-			app.push("latest")
+			app.push("latest")			
 		}
 	}
 }
