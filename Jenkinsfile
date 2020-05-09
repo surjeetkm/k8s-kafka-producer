@@ -1,4 +1,4 @@
-.pusnode{
+node{
 	stage("Git clone"){
 	ap	git credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/surjeetkm/k8s-kafka-producer.git'
 	}
@@ -17,4 +17,4 @@
 			app.push("latest")
 		}
 	}
-}p
+}
