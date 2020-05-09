@@ -15,11 +15,11 @@ spec:
           ports:
             - containerPort: 8080
           env:   # Setting Enviornmental Variables
-          - name: KAFKA_ADVERTISED_HOST_NAME   # Setting Database host address from configMap
+          - name: TEST_MESSAGE   # Setting Database host address from configMap
             valueFrom: 
               configMapKeyRef:
-                name: my-conf  # name of configMap
-                key: name
+                name: test-conf  # name of configMap
+                key: test.message
 ---
 apiVersion: v1
 kind: Service

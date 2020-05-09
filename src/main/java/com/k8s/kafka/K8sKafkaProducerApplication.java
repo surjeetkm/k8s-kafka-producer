@@ -4,6 +4,7 @@ package com.k8s.kafka;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,13 +23,14 @@ public class K8sKafkaProducerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(K8sKafkaProducerApplication.class, args);
 	}
-
+	@Value("${test.message:DEFAULT}")
+	private String message;
 	private static final String TOPIC="test";
 	@Autowired
     KafkaTemplate<String, Customer> kafkaTemplate;
 	@GetMapping("/get")
 	public String hello() {
-		return "Hellow World!";
+		return "Hellow World!"+ message;
 	}
 	@GetMapping(value = "/producer")
 	public String producer() {
