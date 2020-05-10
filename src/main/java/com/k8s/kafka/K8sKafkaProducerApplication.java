@@ -25,7 +25,7 @@ public class K8sKafkaProducerApplication {
 	}
 	@Value("${test.message:DEFAULT}")
 	private String message;
-	private static final String TOPIC="test";
+	private static final String TOPIC="mytopic1";
 	@Autowired
     KafkaTemplate<String, Customer> kafkaTemplate;
 	@GetMapping("/get")
